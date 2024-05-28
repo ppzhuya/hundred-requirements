@@ -54,6 +54,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public boolean deleteUserByUid(String uid) throws SQLException {
+        String sql = "DELETE FROM user WHERE uid = ?";
+        int rowsAffected = dbUtil.executeUpdate(sql, uid);
+        return rowsAffected > 0;
+    }
+
+    @Override
     public boolean queryUserNameExist(String username) throws SQLException {
         String sql = "SELECT * FROM user WHERE uname = ?";
         List<User> users = dbUtil.executeQuery(sql, User.class, username);

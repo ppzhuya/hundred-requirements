@@ -23,6 +23,7 @@ public interface UserDao {
     // 查询所有用户，返回用户列表
     List<User> queryAllUser() throws SQLException;
 
+    boolean deleteUserByUid(String uid) throws  SQLException;
 
     // 查询用户名是否存在，返回true或false
     boolean queryUserNameExist(String username) throws SQLException;

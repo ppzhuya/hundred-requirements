@@ -43,4 +43,26 @@ public class UserController {
 
     }
 
+
+
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseData> delete(@RequestParam String uid){
+        boolean b = userService.deleteUser(uid);
+
+        if(b){
+            return ResponseEntity.ok(ResponseData.success("删除成功"));
+        }
+        return ResponseEntity.ok(ResponseData.error("删除失败",404));
+    }
+
+    @PostMapping("/resetPwd")
+    public ResponseEntity<ResponseData> resetPwd(@RequestParam String uid,@RequestParam String oldPassword,@RequestParam String newPassword){
+        boolean b = userService.resetPassword(uid, oldPassword, newPassword);
+
+        if(b){
+            return ResponseEntity.ok(ResponseData.success("修改成功"));
+        }
+        return ResponseEntity.ok(ResponseData.error("修改失败",404));
+    }
+
 }
